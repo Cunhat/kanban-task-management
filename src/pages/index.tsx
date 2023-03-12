@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "../components/ui/Button";
+import { Heading } from "../components/ui/Heading";
 
 import { api } from "@/utils/api";
 
@@ -20,6 +21,10 @@ const Home: NextPage = () => {
             </Button>
             <Button intent="secondary">Teste</Button>
             <Button intent="destructive">Teste</Button>
+            <Heading size="xl">Teste</Heading>
+            <Heading size="lg">Teste</Heading>
+            <Heading size="md">Teste</Heading>
+            <Heading size="sm">Teste</Heading>
 
             {/* <AuthShowcase /> */}
           </div>
