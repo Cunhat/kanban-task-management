@@ -21,7 +21,9 @@ const Home: NextPage = () => {
             </Button>
             <Button intent="secondary">Teste</Button>
             <Button intent="destructive">Teste</Button>
-            <Heading size="xl">Teste</Heading>
+            <Heading size="xl" className={"text-white"}>
+              Teste
+            </Heading>
             <Heading size="lg">Teste</Heading>
             <Heading size="md">Teste</Heading>
             <Heading size="sm">Teste</Heading>

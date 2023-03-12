@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { HTMLAttributes, PropsWithChildren } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 
 const headingStyles = cva("font-bold", {
@@ -14,6 +14,7 @@ const headingStyles = cva("font-bold", {
 
 interface HeadingProps {
   color?: string;
+  className?: HTMLAttributes<HTMLHeadingElement>["className"];
 }
 
 export interface Props
@@ -34,12 +35,13 @@ const tags = {
 export const Heading: React.FC<PropsWithChildren<Props>> = ({
   size,
   children,
+  className,
   ...props
 }) => {
   const Component: TComponent = tags[size] as TComponent;
 
   return (
-    <Component className={headingStyles({ size })} {...props}>
+    <Component className={headingStyles({ size, className })} {...props}>
       {children}
     </Component>
   );
