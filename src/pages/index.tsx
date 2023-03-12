@@ -4,6 +4,7 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "../components/ui/Button";
 import { Heading } from "../components/ui/Heading";
+import { Body } from "../components/ui/Body";
 
 import { api } from "@/utils/api";
 
@@ -24,9 +25,22 @@ const Home: NextPage = () => {
             <Heading size="xl" className={"text-white"}>
               Teste
             </Heading>
-            <Heading size="lg">Teste</Heading>
-            <Heading size="md">Teste</Heading>
-            <Heading size="sm">Teste</Heading>
+            <Heading size="lg" className={"text-white"}>
+              Teste
+            </Heading>
+            <Heading size="md" className={"text-white"}>
+              Teste
+            </Heading>
+            <Heading size="sm" className={"text-white"}>
+              Teste
+            </Heading>
+
+            <Body size="lg" className={"text-white"}>
+              Teste
+            </Body>
+            <Body size="md" className={"text-white"}>
+              Teste
+            </Body>
 
             {/* <AuthShowcase /> */}
           </div>
