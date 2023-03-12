@@ -7,7 +7,7 @@ export interface Props extends ButtonOrLinkProps {}
 
 export function ButtonOrLink({ href, ...props }: Props) {
   const isLink = typeof href !== "undefined";
-  const ButtonOrLink = isLink ? "a" : "button";
+  const ButtonOrLink = "button";
 
   let content = <ButtonOrLink {...props} />;
 

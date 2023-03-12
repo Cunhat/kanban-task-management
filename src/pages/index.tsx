@@ -15,7 +15,9 @@ const Home: NextPage = () => {
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <div className="flex flex-col items-center gap-2">
             <Button>Teste</Button>
-            <Button size={"sm"}>Teste</Button>
+            <Button href="/home" size={"sm"}>
+              Teste
+            </Button>
             <Button intent="secondary">Teste</Button>
             <Button intent="destructive">Teste</Button>
 
