@@ -1,6 +1,9 @@
 import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
+import { NextPage } from "next/types";
+import { ReactElement, ReactNode } from "react";
+import type { AppProps } from "next/app";
 
 import { api } from "@/utils/api";
 
@@ -12,11 +15,21 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
 });
 
-const MyApp: AppType<{ session: Session | null }> = ({
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => JSX.Element;
+};
+
+export type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+const MyApp = ({
   Component,
   pageProps: { session, ...pageProps },
-}) => {
-  return (
+}: AppPropsWithLayout) => {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
+  return getLayout(
     <SessionProvider session={session}>
       <main className={`${jakarta.variable} font-sans`}>
         <Component {...pageProps} />
