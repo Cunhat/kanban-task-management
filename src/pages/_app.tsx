@@ -1,11 +1,11 @@
-import { type AppType } from "next/app";
-import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { NextPage } from "next/types";
 import { ReactElement, ReactNode } from "react";
 import type { AppProps } from "next/app";
 
 import { api } from "@/utils/api";
+
+import { ThemeProvider } from "next-themes";
 
 import "@/styles/globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
@@ -31,9 +31,11 @@ const MyApp = ({
 
   return getLayout(
     <SessionProvider session={session}>
-      <main className={`${jakarta.variable} font-sans`}>
-        <Component {...pageProps} />
-      </main>
+      <ThemeProvider storageKey="preferred-theme" attribute="class">
+        <main className={`${jakarta.variable} font-sans`}>
+          <Component {...pageProps} />
+        </main>
+      </ThemeProvider>
     </SessionProvider>
   );
 };
