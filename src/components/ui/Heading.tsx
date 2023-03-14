@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, PropsWithChildren } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 
-const headingStyles = cva("font-bold", {
+const headingStyles = cva("font-bold font-sans", {
   variants: {
     size: {
       xl: "text-2xl leading-[30px]",

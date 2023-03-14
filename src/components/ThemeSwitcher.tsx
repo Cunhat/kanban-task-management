@@ -25,7 +25,7 @@ export const ThemeSwitcher: React.FC = () => {
         onChange={toggleTheme}
         className={`${"bg-primary"} relative inline-flex h-6 w-11 items-center rounded-full`}
       >
-        <span className="sr-only">Enable notifications</span>
+        <span className="sr-only">Change Theme color</span>
         <span
           className={`${
             enabled ? "translate-x-6" : "translate-x-1"
