@@ -32,7 +32,6 @@ export const ThemeSwitcher: React.FC = () => {
           } inline-block h-4 w-4 transform rounded-full bg-white transition`}
         />
       </Switch>
-
       <Image src="/svg/icon-dark-theme.svg" alt="Logo" width={18} height={18} />
     </div>
   );

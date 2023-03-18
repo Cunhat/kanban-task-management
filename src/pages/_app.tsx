@@ -4,7 +4,6 @@ import { ReactElement, ReactNode } from "react";
 import type { AppProps } from "next/app";
 
 import { api } from "@/utils/api";
-import { ThemeProvider } from "next-themes";
 
 import "@/styles/globals.css";
 
@@ -24,9 +23,7 @@ const MyApp = ({
 
   return getLayout(
     <SessionProvider session={session}>
-      <ThemeProvider storageKey="preferred-theme" attribute="class">
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Component {...pageProps} />
     </SessionProvider>
   );
 };
