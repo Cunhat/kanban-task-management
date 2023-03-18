@@ -16,8 +16,6 @@ import { NextPageWithLayout } from "@/pages/_app";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 const Home: NextPageWithLayout = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
-
   return (
     <>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b ">

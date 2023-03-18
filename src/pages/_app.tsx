@@ -4,16 +4,9 @@ import { ReactElement, ReactNode } from "react";
 import type { AppProps } from "next/app";
 
 import { api } from "@/utils/api";
-
 import { ThemeProvider } from "next-themes";
 
 import "@/styles/globals.css";
-import { Plus_Jakarta_Sans } from "next/font/google";
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-});
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => JSX.Element;
@@ -32,9 +25,7 @@ const MyApp = ({
   return getLayout(
     <SessionProvider session={session}>
       <ThemeProvider storageKey="preferred-theme" attribute="class">
-        <main className={`${jakarta.variable} font-sans`}>
-          <Component {...pageProps} />
-        </main>
+        <Component {...pageProps} />
       </ThemeProvider>
     </SessionProvider>
   );
