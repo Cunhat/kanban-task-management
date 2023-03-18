@@ -14,17 +14,20 @@ const jakarta = Plus_Jakarta_Sans({
 export const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div
-      className={`${jakarta.variable} h-full bg-lines-100 font-sans dark:bg-customGrey-900`}
+      className={`${jakarta.variable} grid min-h-screen bg-customGrey-100 font-sans dark:bg-customGrey-900 md:grid-cols-[261px_auto] `}
     >
-      <NavBar />
-      <main>{children}</main>
+      <div className="hidden h-full border border-lines-100 bg-white dark:border-lines-900 dark:bg-customGrey-800 md:flex"></div>
+      <div className="flex h-full flex-col ">
+        <NavBar />
+        <main className="flex-1">{children}</main>
+      </div>
     </div>
   );
 };
 
 const NavBar: React.FC = () => {
   return (
-    <div className="flex items-center gap-4 bg-white p-4 dark:bg-customGrey-800">
+    <div className="flex items-center gap-4 border border-lines-100 bg-white p-4 dark:border-lines-900 dark:bg-customGrey-800">
       <Image src="/svg/logo-mobile.svg" alt="Logo" width={24} height={25} />
       <div className="flex items-center gap-2">
         <Heading size="lg" className="text-black dark:text-white">
