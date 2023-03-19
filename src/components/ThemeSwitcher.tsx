@@ -23,7 +23,7 @@ export const ThemeSwitcher: React.FC = () => {
       <Switch
         checked={enabled}
         onChange={toggleTheme}
-        className={`${"bg-primary"} relative inline-flex h-6 w-11 items-center rounded-full`}
+        className="relative inline-flex h-6 w-11 items-center rounded-full bg-primary hover:bg-primaryHover"
       >
         <span className="sr-only">Change Theme color</span>
         <span

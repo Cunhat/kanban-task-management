@@ -8,6 +8,7 @@ import { Body } from "../ui/Body";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { ThemeProvider } from "next-themes";
 import React from "react";
+import { IconHideSideBar } from "../Svg/IconHideSideBar";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -15,7 +16,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
   return (
     <ThemeProvider storageKey="preferred-theme" attribute="class">
       <div
@@ -47,7 +48,7 @@ const SideBar: React.FC<{
     return (
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="absolute bottom-8  z-10 flex h-12 w-14 items-center rounded-r-3xl bg-primary pl-[18px] hover:cursor-pointer"
+        className="absolute bottom-8  z-10 flex h-12 w-14 items-center rounded-r-3xl bg-primary pl-[18px] hover:cursor-pointer hover:bg-primaryHover"
       >
         <Image
           src="/svg/icon-show-sidebar.svg"
@@ -77,16 +78,11 @@ const SideBar: React.FC<{
       <div className="mt-auto flex flex-col gap-4 px-3">
         <ThemeSwitcher />
         <div
-          className="flex h-12 items-center gap-[10px] pl-[10px] hover:cursor-pointer"
+          className="flex h-12 items-center gap-[10px] rounded-r-3xl fill-customGrey-500 pl-[10px] text-customGrey-500 hover:cursor-pointer hover:bg-customGrey-100 hover:fill-primary hover:text-primary"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <Image
-            src="/svg/icon-hide-sidebar.svg"
-            alt="Logo"
-            width={18}
-            height={16}
-          />
-          <Heading size="md" className="text-customGrey-500">
+          <IconHideSideBar />
+          <Heading size="md" className="text-inherit">
             Hide Sidebar
           </Heading>
         </div>
