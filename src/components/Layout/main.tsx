@@ -138,3 +138,14 @@ const NavBar: React.FC = () => {
     </div>
   );
 };
+
+const BoardLink: React.FC<{ title: string }> = ({ title }) => {
+  return (
+    <div className="mr-6 flex h-12 items-center gap-[10px] rounded-r-3xl fill-customGrey-500 pl-[30px] text-customGrey-500 hover:cursor-pointer hover:bg-customGrey-100 hover:fill-primary hover:text-primary">
+      <IconHideSideBar />
+      <Heading size="md" className="text-inherit">
+        Hide Sidebar
+      </Heading>
+    </div>
+  );
+};
