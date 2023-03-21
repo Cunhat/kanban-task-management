@@ -75,10 +75,12 @@ const SideBar: React.FC<{
         height={25}
         className="hidden pl-6 dark:block"
       />
-      <div className="mt-auto flex flex-col gap-4 px-3">
-        <ThemeSwitcher />
+      <div className="mt-auto flex flex-col gap-4">
+        <div className="px-3">
+          <ThemeSwitcher />
+        </div>
         <div
-          className="flex h-12 items-center gap-[10px] rounded-r-3xl fill-customGrey-500 pl-[10px] text-customGrey-500 hover:cursor-pointer hover:bg-customGrey-100 hover:fill-primary hover:text-primary"
+          className="mr-6 flex h-12 items-center gap-[10px] rounded-r-3xl fill-customGrey-500 pl-[30px] text-customGrey-500 hover:cursor-pointer hover:bg-customGrey-100 hover:fill-primary hover:text-primary"
           onClick={() => setIsOpen(!isOpen)}
         >
           <IconHideSideBar />
