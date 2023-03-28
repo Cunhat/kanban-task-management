@@ -9,6 +9,8 @@ import { ThemeSwitcher } from "../ThemeSwitcher";
 import { ThemeProvider } from "next-themes";
 import React from "react";
 import { IconHideSideBar } from "../Svg/IconHideSideBar";
+import { Slot } from "@radix-ui/react-slot";
+import Link from "next/link";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -79,15 +81,11 @@ const SideBar: React.FC<{
         <div className="px-3">
           <ThemeSwitcher />
         </div>
-        <div
-          className="mr-6 flex h-12 items-center gap-[10px] rounded-r-3xl fill-customGrey-500 pl-[30px] text-customGrey-500 hover:cursor-pointer hover:bg-customGrey-100 hover:fill-primary hover:text-primary"
+        <BoardButton
+          title="Hide Sidebar"
+          icon={<IconHideSideBar />}
           onClick={() => setIsOpen(!isOpen)}
-        >
-          <IconHideSideBar />
-          <Heading size="md" className="text-inherit">
-            Hide Sidebar
-          </Heading>
-        </div>
+        ></BoardButton>
       </div>
     </div>
   );
@@ -139,13 +137,29 @@ const NavBar: React.FC = () => {
   );
 };
 
-const BoardLink: React.FC<{ title: string }> = ({ title }) => {
+const BoardButton: React.FC<{
+  title: string;
+  icon: ReactNode;
+  onClick?: () => void;
+}> = ({ title, icon, onClick }) => {
   return (
-    <div className="mr-6 flex h-12 items-center gap-[10px] rounded-r-3xl fill-customGrey-500 pl-[30px] text-customGrey-500 hover:cursor-pointer hover:bg-customGrey-100 hover:fill-primary hover:text-primary">
-      <IconHideSideBar />
+    <div
+      onClick={onClick}
+      className="mr-6 flex h-12 items-center gap-[10px] rounded-r-3xl fill-customGrey-500 pl-[30px] text-customGrey-500 hover:cursor-pointer hover:bg-customGrey-100 hover:fill-primary hover:text-primary"
+    >
+      {icon}
       <Heading size="md" className="text-inherit">
-        Hide Sidebar
+        {title}
       </Heading>
     </div>
+  );
+};
+
+const ButtonOrLink: React.FC<{ isChild: boolean }> = ({ isChild }) => {
+  const Component = isChild ? Slot : "button";
+  return (
+    <Component>
+      <BoardButton title="Hide Sidebar" icon={<IconHideSideBar />} />
+    </Component>
   );
 };
