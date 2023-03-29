@@ -9,8 +9,9 @@ import { ThemeSwitcher } from "../ThemeSwitcher";
 import { ThemeProvider } from "next-themes";
 import React from "react";
 import { IconHideSideBar } from "../Svg/IconHideSideBar";
-import { Slot } from "@radix-ui/react-slot";
+import { IconBoard } from "../Svg/IconBoard";
 import Link from "next/link";
+import { cva } from "class-variance-authority";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -86,6 +87,7 @@ const SideBar: React.FC<{
           icon={<IconHideSideBar />}
           onClick={() => setIsOpen(!isOpen)}
         ></BoardButton>
+        <BoardButton isLink title="Logout" />
       </div>
     </div>
   );
@@ -137,29 +139,46 @@ const NavBar: React.FC = () => {
   );
 };
 
-const BoardButton: React.FC<{
+const BoardButtonStyles = cva(
+  "mr-6 flex h-12 items-center gap-[10px] rounded-r-3xl hover:cursor-pointer pl-[30px] fill-customGrey-500 text-customGrey-500",
+  {
+    variants: {
+      isLink: {
+        true: "hover:bg-primary hover:text-white hover:fill-white",
+        false: "hover:bg-customGrey-100 hover:fill-primary hover:text-primary",
+      },
+    },
+  }
+);
+
+type BoardButtonProps = {
   title: string;
-  icon: ReactNode;
+  icon?: ReactNode;
   onClick?: () => void;
-}> = ({ title, icon, onClick }) => {
-  return (
-    <div
-      onClick={onClick}
-      className="mr-6 flex h-12 items-center gap-[10px] rounded-r-3xl fill-customGrey-500 pl-[30px] text-customGrey-500 hover:cursor-pointer hover:bg-customGrey-100 hover:fill-primary hover:text-primary"
-    >
-      {icon}
-      <Heading size="md" className="text-inherit">
-        {title}
-      </Heading>
-    </div>
-  );
+  isLink?: boolean;
+  href?: string;
 };
 
-const ButtonOrLink: React.FC<{ isChild: boolean }> = ({ isChild }) => {
-  const Component = isChild ? Slot : "button";
+const BoardButton: React.FC<BoardButtonProps> = ({
+  title,
+  icon,
+  onClick,
+  isLink,
+}) => {
+  const Component = isLink ? Link : "button";
+
   return (
-    <Component>
-      <BoardButton title="Hide Sidebar" icon={<IconHideSideBar />} />
+    <Component
+      onClick={onClick}
+      href={isLink ? "/teste" : ""}
+      className={BoardButtonStyles({ isLink: isLink ?? false })}
+    >
+      <>
+        {isLink ? <IconBoard /> : icon}
+        <Heading size="md" className="text-inherit">
+          {title}
+        </Heading>
+      </>
     </Component>
   );
 };
