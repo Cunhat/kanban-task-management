@@ -39,6 +39,24 @@ export const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
+const BoardsList: React.FC = () => {
+  return (
+    <div className="pr-6">
+      <Body className="mb-5 pl-8 text-customGrey-500" size="md">
+        ALL BOARDS (8)
+      </Body>
+      <BoardButton type="isLink" title="Logout" href="/test" />
+      <BoardButton type="isLink" title="Logout" />
+      <BoardButton type="isLink" title="Logout" />
+      <BoardButton
+        type="buttonLink"
+        title="+ Create New Board"
+        //onClick={() => setIsOpen(!isOpen)}
+      />
+    </div>
+  );
+};
+
 const SideBar: React.FC<{
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
@@ -78,16 +96,19 @@ const SideBar: React.FC<{
         height={25}
         className="hidden pl-6 dark:block"
       />
+      <BoardsList />
       <div className="mt-auto flex flex-col gap-4">
         <div className="px-3">
           <ThemeSwitcher />
         </div>
-        <BoardButton
-          title="Hide Sidebar"
-          icon={<IconHideSideBar />}
-          onClick={() => setIsOpen(!isOpen)}
-        ></BoardButton>
-        <BoardButton isLink title="Logout" />
+        <div className="pr-6">
+          <BoardButton
+            title="Hide Sidebar"
+            icon={<IconHideSideBar />}
+            onClick={() => setIsOpen(!isOpen)}
+            type="isButton"
+          ></BoardButton>
+        </div>
       </div>
     </div>
   );
@@ -140,12 +161,14 @@ const NavBar: React.FC = () => {
 };
 
 const BoardButtonStyles = cva(
-  "mr-6 flex h-12 items-center gap-[10px] rounded-r-3xl hover:cursor-pointer pl-[30px] fill-customGrey-500 text-customGrey-500",
+  "flex h-12 items-center gap-[10px] rounded-r-3xl hover:cursor-pointer fill-customGrey-500 text-customGrey-500 w-full pl-6",
   {
     variants: {
-      isLink: {
-        true: "hover:bg-primary hover:text-white hover:fill-white",
-        false: "hover:bg-customGrey-100 hover:fill-primary hover:text-primary",
+      type: {
+        isLink: "hover:bg-primary hover:text-white hover:fill-white",
+        isButton:
+          "hover:bg-customGrey-100 hover:fill-primary hover:text-primary",
+        buttonLink: "hover:bg-primary hover:text-white hover:fill-white",
       },
     },
   }
@@ -155,7 +178,7 @@ type BoardButtonProps = {
   title: string;
   icon?: ReactNode;
   onClick?: () => void;
-  isLink?: boolean;
+  type: "isLink" | "isButton" | "buttonLink";
   href?: string;
 };
 
@@ -163,18 +186,19 @@ const BoardButton: React.FC<BoardButtonProps> = ({
   title,
   icon,
   onClick,
-  isLink,
+  type,
+  href,
 }) => {
-  const Component = isLink ? Link : "button";
+  const Component = type === "isLink" ? Link : "button";
 
   return (
     <Component
       onClick={onClick}
-      href={isLink ? "/teste" : ""}
-      className={BoardButtonStyles({ isLink: isLink ?? false })}
+      href={href ?? "/"}
+      className={BoardButtonStyles({ type })}
     >
       <>
-        {isLink ? <IconBoard /> : icon}
+        {type !== "isButton" ? <IconBoard /> : icon}
         <Heading size="md" className="text-inherit">
           {title}
         </Heading>
